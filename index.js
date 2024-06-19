@@ -1,10 +1,17 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   const customTimeInput = document.getElementById('custom-time')
-  const now = new Date()
-  const hours = String(now.getHours()).padStart(2, '0')
-  const minutes = String(now.getMinutes()).padStart(2, '0')
-  const seconds = String(now.getSeconds()).padStart(2, '0')
-  customTimeInput.value = `${hours}:${minutes}:${seconds}`
+
+  // Function to set current time in the input field
+  function setCurrentTime() {
+    const now = new Date()
+    const hours = String(now.getHours()).padStart(2, '0')
+    const minutes = String(now.getMinutes()).padStart(2, '0')
+    const seconds = String(now.getSeconds()).padStart(2, '0')
+    customTimeInput.value = `${hours}:${minutes}:${seconds}`
+  }
+  setCurrentTime()
+  // Update current time every second
+  setInterval(setCurrentTime, 1000)
 
   // ตรวจสอบ Session Storage และแสดงข้อมูลที่เก็บไว้
   Object.keys(times).forEach((event) => {
@@ -21,42 +28,6 @@ const times = {
   Stadium: [],
   Casino: [],
   Athena: [],
-}
-
-const gistId = '1'
-const accessToken = '1'
-const gistApiUrl = `https://api.github.com/gists/${gistId}`
-
-// ฟังก์ชันสำหรับอัปเดตข้อมูลไปยัง GitHub Gist
-function updateGist(times) {
-  const timesJson = JSON.stringify(times, null, 2) // null, 2 for pretty formatting
-
-  fetch(gistApiUrl, {
-    method: 'PATCH',
-    headers: {
-      Authorization: `token ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      files: {
-        'times.json': {
-          content: timesJson,
-        },
-      },
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed to update Gist')
-      }
-      return response.json()
-    })
-    .then((data) => {
-      console.log('Gist updated successfully:', data.html_url)
-    })
-    .catch((error) => {
-      console.error('Error updating Gist:', error)
-    })
 }
 
 function selectEvent(eventName) {
@@ -97,7 +68,6 @@ function addTime() {
   sessionStorage.setItem(selectedEvent, JSON.stringify(times[selectedEvent]))
 
   // อัปเดตข้อมูลไปยัง GitHub Gist
-  updateGist(times)
 
   displayResults()
 }
@@ -109,7 +79,6 @@ function resetConfirmation() {
     Object.keys(times).forEach((event) => (times[event] = []))
 
     // อัปเดตข้อมูลไปยัง GitHub Gist
-    updateGist(times)
 
     displayResults()
     alert('ลบข้อมูลเรียบร้อยแล้ว')
@@ -121,7 +90,6 @@ function deleteTime(eventName, index) {
   sessionStorage.setItem(eventName, JSON.stringify(times[eventName]))
 
   // อัปเดตข้อมูลไปยัง GitHub Gist
-  updateGist(times)
 
   displayResults()
 }

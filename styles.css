@@ -1,117 +1,175 @@
 body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: linear-gradient(135deg, #606060, #062631);
-      }
-      .container {
-        display: flex;
-        gap: 20px;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-      .form-group {
-        margin-bottom: 15px;
-      }
-      .form-group label {
-        display: block;
-        margin-bottom: 5px;
-      }
-      .form-group input,
-      .form-group button {
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-      }
-      .button-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .button-group button {
-        width: auto;
-        padding: 10px 20px;
-        margin-right: 10px;
-        border: none;
-        cursor: pointer;
-        background-color: #595959;
-        color: white;
-        border-radius: 20px;
-        transition: background-color 0.3s ease;
-      }
-      .button-group button:hover {
-        background-color: #1d3920;
-      }
-      .button-group button.active {
-        background-color: #4caf50;
-        color: rgb(255, 255, 255);
-      }
-      .result-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .result {
-        padding: 10px;
-        background-color: #e0ffe0;
-        border: 1px solid #b0ffb0;
-        border-radius: 5px;
-        width: 300px;
-        text-align: start;
-      }
-      .result-item {
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      .result-item span {
-        margin-left: 10px;
-        cursor: pointer;
-        color: rgb(154, 0, 0);
-      }
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #606060, #062631);
+}
+.container {
+  display: flex;
+  gap: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button-group button {
+  width: auto;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #595959;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+.button-group button:hover {
+  background-color: #1d3920;
+}
+.button-group button.active {
+  background-color: #4caf50;
+  color: rgb(255, 255, 255);
+}
+.result-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.result {
+  padding: 10px;
+  background-color: #e0ffe0;
+  border: 1px solid #b0ffb0;
+  border-radius: 5px;
+  width: 300px;
+  text-align: start;
+}
+.result-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.result-item span {
+  margin-left: 10px;
+  cursor: pointer;
+  color: rgb(154, 0, 0);
+}
 
-      .button-group1 {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .button-group1 button {
-        width: auto;
-        padding: 10px 20px;
-        margin-right: 10px;
-        border: none;
-        cursor: pointer;
-        background-color: #008b2c;
-        color: white;
-        border-radius: 20px;
-        transition: background-color 0.3s ease;
-      }
-      .button-group1 button:hover {
-        background-color: #016c23;
-      }
-      .button-group2 {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .button-group2 button {
-        width: auto;
-        padding: 10px 20px;
-        margin-right: 10px;
-        border: none;
-        cursor: pointer;
-        background-color: #b52727;
-        color: white;
-        border-radius: 20px;
-        transition: background-color 0.3s ease;
-      }
-      .button-group2 button:hover {
-        background-color: #5f1616;
-      }
+.button-group1 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button-group1 button {
+  width: auto;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #008b2c;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+.button-group1 button:hover {
+  background-color: #016c23;
+}
+.button-group2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button-group2 button {
+  width: auto;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #b52727;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+.button-group2 button:hover {
+  background-color: #5f1616;
+}
+
+/* styles.css */
+
+/* Toggle button styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-left: 2px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #bf5c5c;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #00b972;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

@@ -4,19 +4,19 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  filter: brightness(0.99);
-  background-image: url('https://cdn.discordapp.com/attachments/1188912527413870623/1253084265755836537/2222.png?ex=6674912a&is=66733faa&hm=7938dc420864398d509944fbc4f650330b2e82d2bd5cb5050de18d3cc7b2e831&');
-  /* background-repeat: repeat; */
-  /* background-attachment: fixed; */
-  background-position: center;
+  overflow: hidden; /* จำกัดให้ภาพเคลื่อนไหวอยู่ภายในขอบเขตของหน้าจอ */
+  background-color: #535353; /* สีพื้นหลัง */
 }
+
 .container {
   display: flex;
   gap: 20px;
-  background-color: #ffffff;
+  background-color: #3b3b3b;
   padding: 20px;
   border-radius: 25px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  height: 459px;
 }
 .form-group {
   margin-bottom: 15px;
@@ -42,7 +42,7 @@ body {
 }
 .button-group button {
   width: auto;
-  padding: 10px 20px;
+  padding: 12px 10px;
   margin-right: 10px;
   border: none;
   cursor: pointer;

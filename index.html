@@ -21,17 +21,20 @@
           </button>
         </div>
         <div class="form-group">
-          <label for="custom-time">เวลา</label>
           <input
             type="text"
             id="custom-time"
             placeholder="HH:MM:SS"
             style="
-              padding: 10px;
-              width: 100%;
+              margin-top: 5vh;
+              padding: 8px;
+              width: 97%;
               box-sizing: border-box;
-              border: 1px solid #ccc;
-              border-radius: 5px;
+              border: 2px solid #917d4a;
+              color: white;
+              padding-left: 91.5px;
+              background-color: #917d4a;
+              border-radius: 20px;
               font-size: 16px;
             "
           />
@@ -44,10 +47,6 @@
         </div>
         <!-- ปุ่มเปิดปิด -->
         <div class="form-group button-group3" id="toggle">
-          <strong style="display: inline-block; margin-right: 10px"
-            >ถ้าจะแก้ไขเวลาให้ปิด</strong
-          >
-
           <label class="switch" style="display: inline-block">
             <input
               type="checkbox"
@@ -56,6 +55,9 @@
               onclick="toggleCurrentTime()"
             /><span class="slider round"></span>
           </label>
+          <strong style="display: inline-block; margin-left: 9px; color: white"
+            >ถ้าจะแก้ไขเวลาให้ปิด</strong
+          >
         </div>
 
         <!-- ปุ่มเปิดปิด -->

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ทำลูปเวลางัดร้าน</title>
+<link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <script src="index.js"></script>
+    <div class="container">
+      <div>
+        <div class="form-group button-group">
+          <button onclick="selectEvent('Stadium')" id="button-Stadium">
+            Stadium
+          </button>
+          <button onclick="selectEvent('Casino')" id="button-Casino">
+            Casino
+          </button>
+          <button onclick="selectEvent('Athena')" id="button-Athena">
+            Athena
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="custom-time">เวลา</label>
+          <input
+            type="text"
+            id="custom-time"
+            placeholder="HH:MM:SS"
+            style="
+              padding: 10px;
+              width: 100%;
+              box-sizing: border-box;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              font-size: 16px;
+            "
+          />
+        </div>
+        <div class="form-group button-group1" id="add">
+          <button onclick="addTime()">เพิ่มเวลา 45 นาที</button>
+        </div>
+        <div class="form-group button-group2" id="reset">
+          <button onclick="resetConfirmation()">Reset</button>
+        </div>
+      </div>
+      <div class="result-container">
+        <div id="result-Stadium" class="result">
+          <div class="Stadium"><strong>Stadium</strong></div>
+        </div>
+        <div id="result-Casino" class="result">
+          <div class="Casino"><strong>Casino</strong></div>
+        </div>
+        <div id="result-Athena" class="result">
+          <div class="Athena"><strong>Athena</strong></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

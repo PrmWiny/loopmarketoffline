@@ -8,6 +8,27 @@ body {
   background-color: #535353;
 }
 
+body {
+  font-family: 'Stadium Casino Athena', sans-serif;
+}
+
+/* หากต้องการสามารถกำหนดฟอนต์ให้กับส่วนอื่น ๆ ของเว็บไซต์ได้ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+div,
+span,
+button,
+input,
+textarea {
+  font-family: 'Stadium Casino Athena', sans-serif;
+}
+
 .container {
   display: flex;
   gap: 20px;
@@ -57,6 +78,17 @@ body {
 .button-group button.active {
   background-color: #4caf50;
   color: rgb(255, 255, 255);
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    background-color: #4caf50;
+  }
+  50% {
+    background-color: #295d2b;
+  }
 }
 .result-container {
   display: flex;
@@ -77,11 +109,22 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.result-item span {
+.result-item button {
   margin-left: 3px;
   cursor: pointer;
-  color: rgb(193, 55, 55);
-  font-size: 16px;
+  width: auto;
+  padding: 3px 9px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #b52727;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.result-item button:hover {
+  background-color: #c82d2d;
 }
 
 .button-group1 {
@@ -114,13 +157,13 @@ body {
   margin-right: 10px;
   border: none;
   cursor: pointer;
-  background-color: #b52727;
+  background-color: #893434;
   color: white;
   border-radius: 20px;
   transition: background-color 0.3s ease;
 }
 .button-group2 button:hover {
-  background-color: #5f1616;
+  background-color: #b52727;
 }
 
 /* styles.css */

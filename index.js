@@ -1,155 +1,225 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-  const customTimeInput = document.getElementById('custom-time')
-  let timeInterval = null // Global variable to hold setInterval reference
-  toggleCurrentTime()
-  // Function to set current time in the input field
-  function setCurrentTime() {
-    if (!timeInterval) return // Check if interval is active
-    const now = new Date()
-    const hours = String(now.getHours()).padStart(2, '0')
-    const minutes = String(now.getMinutes()).padStart(2, '0')
-    const seconds = String(now.getSeconds()).padStart(2, '0')
-    customTimeInput.value = `${hours}:${minutes}:${seconds}`
-  }
-
-  setCurrentTime()
-
-  // Toggle function to start/stop updating current time
-  function toggleCurrentTime() {
-    if (timeInterval) {
-      clearInterval(timeInterval)
-      timeInterval = null
-    } else {
-      timeInterval = setInterval(setCurrentTime, 100)
-    }
-  }
-
-  // Check localStorage and display stored data
-  Object.keys(times).forEach((event) => {
-    const storedTimes = localStorage.getItem(event)
-    if (storedTimes) {
-      times[event] = JSON.parse(storedTimes)
-      displayResults()
-    }
-  })
-
-  // Event listener for the toggle button
-  const toggleButton = document.getElementById('toggle-time-btn')
-  toggleButton.addEventListener('click', () => {
-    toggleCurrentTime()
-    toggleButton.textContent = timeInterval ? 'หยุดปรับปรุง' : 'เริ่มปรับปรุง'
-  })
-})
-
-let selectedEvent = null
-const maxEvents = 3 // จำนวนรายการสูงสุดที่อนุญาตต่ออัตรา
-
-const times = {
-  Stadium: [],
-  Casino: [],
-  Athena: [],
+body {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #535353;
 }
 
-function selectEvent(eventName) {
-  selectedEvent = eventName
-  document.querySelectorAll('.button-group button').forEach((button) => {
-    button.classList.remove('active')
-  })
-  document.getElementById(`button-${eventName}`).classList.add('active')
+body {
+  font-family: 'Stadium Casino Athena', sans-serif;
 }
 
-function addTime() {
-  if (!selectedEvent) {
-    alert('กรุณาเลือกเหตุการณ์')
-    return
-  }
-  const customTimeInputValue = document
-    .getElementById('custom-time')
-    .value.trim()
-
-  if (!customTimeInputValue.match(/^\d{1,2}:\d{2}:\d{2}$/)) {
-    alert('รูปแบบเวลาไม่ถูกต้อง (hh:mm:ss)')
-    return
-  }
-
-  const [inputHours, inputMinutes, inputSeconds] = customTimeInputValue
-    .split(':')
-    .map(Number)
-  const customTime = new Date()
-  customTime.setHours(inputHours, inputMinutes, inputSeconds || 0, 0)
-  customTime.setMinutes(customTime.getMinutes() + 45)
-
-  const hours = String(customTime.getHours()).padStart(2, '0')
-  const minutes = String(customTime.getMinutes()).padStart(2, '0')
-  const seconds = String(customTime.getSeconds()).padStart(2, '0')
-  const formattedTime = `${hours}:${minutes}:${seconds}`
-
-  if (times[selectedEvent].length >= maxEvents) {
-    alert(`คุณไม่สามารถเพิ่มเวลาเพิ่มเติมได้เพราะ ${selectedEvent} เต็มแล้ว`)
-    return
-  }
-
-  times[selectedEvent].push(formattedTime)
-
-  // Store data in localStorage
-  localStorage.setItem(selectedEvent, JSON.stringify(times[selectedEvent]))
-
-  // Update data to GitHub Gist (if applicable)
-
-  displayResults()
+/* หากต้องการสามารถกำหนดฟอนต์ให้กับส่วนอื่น ๆ ของเว็บไซต์ได้ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+div,
+span,
+button,
+input,
+textarea {
+  font-family: 'Stadium Casino Athena', sans-serif;
 }
 
-function resetConfirmation() {
-  const confirmation = confirm('คุณแน่ใจหรือไม่ที่จะลบข้อมูลทั้งหมด?')
-  if (confirmation) {
-    localStorage.clear()
-    Object.keys(times).forEach((event) => (times[event] = []))
-
-    // Update data to GitHub Gist (if applicable)
-
-    displayResults()
-    alert('ลบข้อมูลเรียบร้อยแล้ว')
-  }
+.container {
+  display: flex;
+  gap: 20px;
+  background-color: #3b3b3b;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  width: 580px;
+  height: 459px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0px;
+}
+.form-group input,
+.form-group button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button-group button {
+  width: auto;
+  padding: 12px 10px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #595959;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+.button-group button:hover {
+  background-color: #1d3920;
+}
+.button-group button.active {
+  background-color: #4caf50;
+  color: rgb(255, 255, 255);
+  animation: blink 2s infinite;
 }
 
-function deleteTime(eventName, index) {
-  times[eventName].splice(index, 1)
-  localStorage.setItem(eventName, JSON.stringify(times[eventName]))
-
-  // Update data to GitHub Gist (if applicable)
-
-  displayResults()
+@keyframes blink {
+  0%,
+  100% {
+    background-color: #4caf50;
+  }
+  50% {
+    background-color: #295d2b;
+  }
+}
+.result-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.result {
+  padding: 10px;
+  background-color: #c7c7c7;
+  border: 1px solid #c7c7c7;
+  border-radius: 15px;
+  width: 300px;
+  text-align: start;
+  width: 322px;
+  height: 134px;
+}
+.result-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.result-item button {
+  margin-left: 3px;
+  cursor: pointer;
+  width: auto;
+  padding: 3px 9px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #b52727;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
 }
 
-function displayResults() {
-  for (const event of Object.keys(times)) {
-    const resultDiv = document.getElementById(`result-${event}`)
-    resultDiv.innerHTML = `<strong>${event}</strong>`
+.result-item button:hover {
+  background-color: #c82d2d;
+}
 
-    // Find closest time
-    let closestTimeIndex = -1
-    let closestTimeDifference = Infinity
-    const now = new Date()
-    const currentTime = now.getTime()
+.button-group1 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button-group1 button {
+  width: auto;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #008b2c;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+.button-group1 button:hover {
+  background-color: #016c23;
+}
+.button-group2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button-group2 button {
+  width: auto;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #893434;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+.button-group2 button:hover {
+  background-color: #b52727;
+}
 
-    times[event].forEach((time, index) => {
-      const [hours, minutes, seconds] = time.split(':').map(Number)
-      const eventTime = new Date()
-      eventTime.setHours(hours, minutes, seconds || 0, 0)
-      const eventTimeDifference = Math.abs(eventTime.getTime() - currentTime)
+/* styles.css */
 
-      if (eventTimeDifference < closestTimeDifference) {
-        closestTimeDifference = eventTimeDifference
-        closestTimeIndex = index
-      }
+/* Toggle button styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-left: 0px;
+}
 
-      const timeItem = document.createElement('div')
-      timeItem.classList.add('result-item')
-      if (index === closestTimeIndex) {
-        timeItem.classList.add('closest') // Add 'closest' class for the closest time
-      }
-      timeItem.innerHTML = `${time} <span onclick="deleteTime('${event}', ${index})">𝗗𝗘𝗟𝗘𝗧𝗘</span>`
-      resultDiv.appendChild(timeItem)
-    })
-  }
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #bf5c5c;
+  transition: 0.2s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #00b972;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

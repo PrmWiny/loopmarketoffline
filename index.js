@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   const customTimeInput = document.getElementById('custom-time')
+  let timeInterval = null // Global variable to hold setInterval reference
 
   // Function to set current time in the input field
   function setCurrentTime() {
+    if (!timeInterval) return // Check if interval is active
     const now = new Date()
     const hours = String(now.getHours()).padStart(2, '0')
     const minutes = String(now.getMinutes()).padStart(2, '0')
@@ -11,8 +13,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   setCurrentTime()
-  // Update current time every second
-  setInterval(setCurrentTime, 1000)
+
+  // Toggle function to start/stop updating current time
+  function toggleCurrentTime() {
+    if (timeInterval) {
+      clearInterval(timeInterval)
+      timeInterval = null
+    } else {
+      timeInterval = setInterval(setCurrentTime, 100)
+    }
+  }
 
   // Check localStorage and display stored data
   Object.keys(times).forEach((event) => {
@@ -21,6 +31,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
       times[event] = JSON.parse(storedTimes)
       displayResults()
     }
+  })
+
+  // Event listener for the toggle button
+  const toggleButton = document.getElementById('toggle-time-btn')
+  toggleButton.addEventListener('click', () => {
+    toggleCurrentTime()
+    toggleButton.textContent = timeInterval ? 'หยุดปรับปรุง' : 'เริ่มปรับปรุง'
   })
 })
 

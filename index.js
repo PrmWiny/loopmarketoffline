@@ -9,13 +9,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const seconds = String(now.getSeconds()).padStart(2, '0')
     customTimeInput.value = `${hours}:${minutes}:${seconds}`
   }
+
   setCurrentTime()
   // Update current time every second
   setInterval(setCurrentTime, 1000)
 
-  // ตรวจสอบ Session Storage และแสดงข้อมูลที่เก็บไว้
+  // Check localStorage and display stored data
   Object.keys(times).forEach((event) => {
-    const storedTimes = sessionStorage.getItem(event)
+    const storedTimes = localStorage.getItem(event)
     if (storedTimes) {
       times[event] = JSON.parse(storedTimes)
       displayResults()
@@ -43,14 +44,16 @@ function addTime() {
     alert('กรุณาเลือกเหตุการณ์')
     return
   }
-  const customTimeInput = document.getElementById('custom-time').value.trim()
+  const customTimeInputValue = document
+    .getElementById('custom-time')
+    .value.trim()
 
-  if (!customTimeInput.match(/^\d{1,2}:\d{2}:\d{2}$/)) {
+  if (!customTimeInputValue.match(/^\d{1,2}:\d{2}:\d{2}$/)) {
     alert('รูปแบบเวลาไม่ถูกต้อง (hh:mm:ss)')
     return
   }
 
-  const [inputHours, inputMinutes, inputSeconds] = customTimeInput
+  const [inputHours, inputMinutes, inputSeconds] = customTimeInputValue
     .split(':')
     .map(Number)
   const customTime = new Date()
@@ -64,10 +67,10 @@ function addTime() {
 
   times[selectedEvent].push(formattedTime)
 
-  // เก็บข้อมูลใน Session Storage
-  sessionStorage.setItem(selectedEvent, JSON.stringify(times[selectedEvent]))
+  // Store data in localStorage
+  localStorage.setItem(selectedEvent, JSON.stringify(times[selectedEvent]))
 
-  // อัปเดตข้อมูลไปยัง GitHub Gist
+  // Update data to GitHub Gist (if applicable)
 
   displayResults()
 }
@@ -75,10 +78,10 @@ function addTime() {
 function resetConfirmation() {
   const confirmation = confirm('คุณแน่ใจหรือไม่ที่จะลบข้อมูลทั้งหมด?')
   if (confirmation) {
-    sessionStorage.clear()
+    localStorage.clear()
     Object.keys(times).forEach((event) => (times[event] = []))
 
-    // อัปเดตข้อมูลไปยัง GitHub Gist
+    // Update data to GitHub Gist (if applicable)
 
     displayResults()
     alert('ลบข้อมูลเรียบร้อยแล้ว')
@@ -87,9 +90,9 @@ function resetConfirmation() {
 
 function deleteTime(eventName, index) {
   times[eventName].splice(index, 1)
-  sessionStorage.setItem(eventName, JSON.stringify(times[eventName]))
+  localStorage.setItem(eventName, JSON.stringify(times[eventName]))
 
-  // อัปเดตข้อมูลไปยัง GitHub Gist
+  // Update data to GitHub Gist (if applicable)
 
   displayResults()
 }
@@ -99,7 +102,7 @@ function displayResults() {
     const resultDiv = document.getElementById(`result-${event}`)
     resultDiv.innerHTML = `<strong>${event}</strong>`
 
-    // หาเวลาที่ใกล้ที่สุด
+    // Find closest time
     let closestTimeIndex = -1
     let closestTimeDifference = Infinity
     const now = new Date()
@@ -119,7 +122,7 @@ function displayResults() {
       const timeItem = document.createElement('div')
       timeItem.classList.add('result-item')
       if (index === closestTimeIndex) {
-        timeItem.classList.add('closest') // เพิ่มคลาส closest สำหรับเวลาที่ใกล้ที่สุด
+        timeItem.classList.add('closest') // Add 'closest' class for the closest time
       }
       timeItem.innerHTML = `${time} <span onclick="deleteTime('${event}', ${index})">X</span>`
       resultDiv.appendChild(timeItem)

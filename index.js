@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
   const customTimeInput = document.getElementById('custom-time')
   let timeInterval = null // Global variable to hold setInterval reference
-
+toggleCurrentTime()
   // Function to set current time in the input field
   function setCurrentTime() {
     if (!timeInterval) return // Check if interval is active

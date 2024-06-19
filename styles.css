@@ -87,12 +87,25 @@ body {
 .result-item {
   margin-top: 10px;
   margin-bottom: 10px;
+  text-wrap: stable;
+  text-align: Start;
+  font-family: 'Alvina_Demo', sans-serif;
+  font-size: 16.5px;
+  color: #000000; /* สีเขียวแบบนาฬิกาดิจิตอล */
+  text-align: left;
+}
+
+@font-face {
+  font-family: 'Digital-7';
+  src: url('fonts/Alvina_Demo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 .result-item button {
   margin-left: 3px;
   cursor: pointer;
   width: auto;
-  padding: 3px 9px;
+  padding: 2px 10px;
   margin-right: 10px;
   border: none;
   cursor: pointer;

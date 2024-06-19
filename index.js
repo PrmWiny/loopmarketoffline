@@ -148,7 +148,7 @@ function displayResults() {
       if (index === closestTimeIndex) {
         timeItem.classList.add('closest') // Add 'closest' class for the closest time
       }
-      timeItem.innerHTML = `${time} <span onclick="deleteTime('${event}', ${index})">X</span>`
+      timeItem.innerHTML = `${time} <span onclick="deleteTime('${event}', ${index})">◀</span>`
       resultDiv.appendChild(timeItem)
     })
   }

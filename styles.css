@@ -1,11 +1,11 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden; /* จำกัดให้ภาพเคลื่อนไหวอยู่ภายในขอบเขตของหน้าจอ */
-  background-color: #535353; /* สีพื้นหลัง */
+  overflow: hidden;
+  background-color: #535353;
 }
 
 .container {
@@ -15,7 +15,7 @@ body {
   padding: 20px;
   border-radius: 25px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-  width: 600px;
+  width: 580px;
   height: 459px;
 }
 .form-group {
@@ -65,20 +65,23 @@ body {
 }
 .result {
   padding: 10px;
-  background-color: #e0ffe0;
-  border: 1px solid #b0ffb0;
-  border-radius: 5px;
+  background-color: #c7c7c7;
+  border: 1px solid #c7c7c7;
+  border-radius: 15px;
   width: 300px;
   text-align: start;
+  width: 322px;
+  height: 134px;
 }
 .result-item {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 .result-item span {
-  margin-left: 10px;
+  margin-left: 3px;
   cursor: pointer;
-  color: rgb(154, 0, 0);
+  color: rgb(193, 55, 55);
+  font-size: 16px;
 }
 
 .button-group1 {

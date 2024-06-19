@@ -8,27 +8,6 @@ body {
   background-color: #535353;
 }
 
-body {
-  font-family: 'Stadium Casino Athena', sans-serif;
-}
-
-/* หากต้องการสามารถกำหนดฟอนต์ให้กับส่วนอื่น ๆ ของเว็บไซต์ได้ */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-div,
-span,
-button,
-input,
-textarea {
-  font-family: 'Stadium Casino Athena', sans-serif;
-}
-
 .container {
   display: flex;
   gap: 20px;
@@ -87,7 +66,7 @@ textarea {
     background-color: #4caf50;
   }
   50% {
-    background-color: #295d2b;
+    background-color: #60e064;
   }
 }
 .result-container {

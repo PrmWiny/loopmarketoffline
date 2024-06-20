@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const customTimeInput = document.getElementById('custom-time')
   let timeInterval = null // Global variable to hold setInterval reference
   toggleCurrentTime()
+  displayResults()
+
   customTimeInput.addEventListener('click', () => {
     toggleCurrentTime()
   })
@@ -16,6 +18,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
   const copyButton = document.getElementById('copy-button')
   copyButton.addEventListener('click', copyTimesToClipboard)
+
   setCurrentTime()
 
   // Toggle function to start/stop updating current time
@@ -48,7 +51,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 let selectedEvent = null
 const maxEvents = 3 // จำนวนรายการสูงสุดที่อนุญาตต่ออัตรา
 
-const times = {
+let times = {
   Stadium: [],
   Casino: [],
   Athena: [],
@@ -56,13 +59,15 @@ const times = {
 
 function copyTimesToClipboard() {
   const timesString = JSON.stringify(times, null, 2)
+  const timeData = `times = ${timesString};console.log(times.Stadium,times.Casino,times.Athena);displayResults();` // เพิ่ม time = ลงไปท้ายข้อมูล
   const textArea = document.createElement('textarea')
-  textArea.value = timesString
+  textArea.value = timeData
   document.body.appendChild(textArea)
   textArea.select()
   document.execCommand('copy')
   document.body.removeChild(textArea)
-  alert('Data copied to clipboard')
+
+  alert('ก็อปแล้วเอา่ไปใส่ใน F12 หัวข้อ Console แล้ว Enter')
 }
 
 function selectEvent(eventName) {
@@ -130,8 +135,6 @@ function resetConfirmation() {
 function deleteTime(eventName, index) {
   times[eventName].splice(index, 1)
   localStorage.setItem(eventName, JSON.stringify(times[eventName]))
-
-  // Update data to GitHub Gist (if applicable)
 
   displayResults()
 }

@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const customTimeInput = document.getElementById('custom-time')
   let timeInterval = null // Global variable to hold setInterval reference
   toggleCurrentTime()
+  customTimeInput.addEventListener('click', () => {
+    toggleCurrentTime()
+  })
   // Function to set current time in the input field
   function setCurrentTime() {
     if (!timeInterval) return // Check if interval is active
@@ -11,7 +14,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const seconds = String(now.getSeconds()).padStart(2, '0')
     customTimeInput.value = `${hours}:${minutes}:${seconds}`
   }
-
+  const copyButton = document.getElementById('copy-button')
+  copyButton.addEventListener('click', copyTimesToClipboard)
   setCurrentTime()
 
   // Toggle function to start/stop updating current time
@@ -48,6 +52,17 @@ const times = {
   Stadium: [],
   Casino: [],
   Athena: [],
+}
+
+function copyTimesToClipboard() {
+  const timesString = JSON.stringify(times, null, 2)
+  const textArea = document.createElement('textarea')
+  textArea.value = timesString
+  document.body.appendChild(textArea)
+  textArea.select()
+  document.execCommand('copy')
+  document.body.removeChild(textArea)
+  alert('Data copied to clipboard')
 }
 
 function selectEvent(eventName) {

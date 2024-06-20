@@ -12,11 +12,11 @@ body {
   display: flex;
   gap: 20px;
   background-color: #3b3b3b;
-  padding: 20px;
+  padding: 25px;
   border-radius: 25px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   width: 580px;
-  height: 480px;
+  height: 512px;
 }
 .form-group {
   margin-bottom: 15px;
@@ -79,7 +79,7 @@ body {
   background-color: #c7c7c7;
   border: 1px solid #c7c7c7;
   border-radius: 15px;
-  width: 300px;
+
   text-align: start;
   width: 322px;
   height: 134px;
@@ -154,8 +154,46 @@ body {
   border-radius: 20px;
   transition: background-color 0.3s ease;
 }
+.form-group input {
+  margin-top: 80px;
+  padding: 10px;
+  width: 97%;
+  box-sizing: border-box;
+  border: 2px solid #917d4a;
+  color: white;
+  padding-left: 31%;
+  background-color: #917d4a;
+  border-radius: 20px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  transition: border 0.3s ease;
+}
+.form-group input:hover {
+  background-color: #5b4f30;
+  border: 2px solid #5b4f30;
+}
 .button-group2 button:hover {
-  background-color: #b52727;
+  background-color: #917d4a;
+}
+
+.button-groupC {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button-groupC button {
+  width: auto;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #0e62a7;
+  color: white;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+.button-groupC button:hover {
+  background-color: #2a5b76;
 }
 
 /* styles.css */

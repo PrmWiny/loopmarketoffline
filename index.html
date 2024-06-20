@@ -2,7 +2,11 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+
     <title>ทำลูปเวลางัดร้าน</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -20,23 +24,15 @@
             Athena
           </button>
         </div>
+        <div class="form-group button-groupC">
+          <button id="copy-button">Copy Data</button>
+        </div>
         <div class="form-group">
           <input
             type="text"
             id="custom-time"
-            placeholder="HH:MM:SS"
-            style="
-              margin-top: 5vh;
-              padding: 8px;
-              width: 97%;
-              box-sizing: border-box;
-              border: 2px solid #917d4a;
-              color: white;
-              padding-left: 31%;
-              background-color: #917d4a;
-              border-radius: 20px;
-              font-size: 16px;
-            "
+            placeholder="00:00:00"
+            onclick="toggleCurrentTime()"
           />
         </div>
         <div class="form-group button-group1" id="add">
@@ -46,7 +42,9 @@
           <button onclick="resetConfirmation()">Reset</button>
         </div>
         <!-- ปุ่มเปิดปิด -->
-        <div class="form-group button-group3" id="toggle">
+
+        <!-- <div class="form-group button-group3" id="toggle">
+          
           <label class="switch" style="display: inline-block">
             <input
               type="checkbox"
@@ -55,10 +53,7 @@
               onclick="toggleCurrentTime()"
             /><span class="slider round"></span>
           </label>
-          <strong style="display: inline-block; margin-left: 9px; color: white"
-            >ถ้าจะแก้ไขเวลาให้ปิด</strong
-          >
-        </div>
+        </div> -->
 
         <!-- ปุ่มเปิดปิด -->
       </div>
